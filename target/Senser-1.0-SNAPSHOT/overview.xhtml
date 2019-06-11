@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+    <link rel="stylesheet" href="css/Styles.css"/>
+    <script src="js/startPage.js"/>
+
+    <h:body onload="openTab(event, 'testbed1')">
+        <h:messages globalOnly="true"/>
+        <div id="admin">
+            <a href="/degthesis/admin.xhtml">Admin</a>
+        </div>
+        <div id="startPageWrapper">
+            <div id="downloadDiv">
+                <div id="actualDownloadDiv">
+                    <h:form>
+                        <h3>Select Sensor To Download From</h3>
+                        <h:selectOneMenu id="sensorValue" value="#{dataManager.chosenSensor}" required="true">
+                            <f:selectItems value="#{dataManager.chosenSensorValue}" var="c" itemLabel="Testbed #{c.testbed} #{c.name}, Sensor ID #{c.sid}" itemValue="#{c.sid}"/>
+                        </h:selectOneMenu>
+                        <br>Start date</br>
+                        <h:inputText value="#{dataManager.startDate}" a:placeholder="2019-01-01 00:00:00" required="true"/>
+                        <br>End date</br>
+                        <h:inputText value="#{dataManager.endDate}" a:placeholder="2019-02-01 00:00:00" required="true"/>
+                        <br>Encrypt data</br>
+                        <h:selectBooleanCheckbox value="#{dataManager.downloadEncrypt}"/>
+                        <br>Motion data</br>
+                        <h:selectBooleanCheckbox value="#{dataManager.downloadMotion}"/>
+                        <br><h:commandButton styleClass="startPageBtn" value="Begin Download" action="#{dataManager.downloadDataByTime()}" onclick=" window.open('localhost:8080/degthesis', '_blank')" /></br>
+                    </h:form>
+                </div>
+
+                <div id="twoTables">
+                    <div id="tableDiv">
+                        <h:form>
+                            <h4>Display Sensor Data</h4>
+                            <br>Sensor ID</br>
+                            <h:inputText id="inputTextDS" value="#{dataManager.displayDataSensor}" a:placeholder="6" required="true"/>
+                            <br>Start date</br>
+                            <h:inputText value="#{dataManager.displayDataStart}" a:placeholder="2019-01-01 00:00:00" required="true"/>
+                            <br>End date</br>
+                            <h:inputText value="#{dataManager.displayDataEnd}" a:placeholder="2019-03-20 00:00:00" required="true"/>
+                            <br>Encrypt data</br>
+                            <h:selectBooleanCheckbox value="#{dataManager.displayEncrypt}"/>
+                            <br>Motion data</br>
+                            <h:selectBooleanCheckbox value="#{dataManager.displayMotion}"/>
+                            <br><p:commandButton styleClass="startPageBtn" action="#{dataManager.updateOverviewData()}" update="sensorPreview" value="Display Sensor data"/></br>
+                        </h:form>
+                        <h:dataTable id="sensorPreview" value="#{dataManager.sensorDataList}" var="o" 
+                                     styleClass="sensor-table" 
+                                     headerClass="sensor-table-header"
+                                     rowClasses="sensor-table-odd-row,sensor-table-even-row"
+                                     >
+                            <h3> Sensor overview</h3>
+                            <h:column>
+                                <f:facet name="header">Value</f:facet>
+                                    #{o.key}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Timestamp</f:facet>
+                                    #{o.value}
+                            </h:column>
+                        </h:dataTable>     
+                    </div>  
+                    <div id="metadataTable">
+                        <h:form>
+                            <h4>Display Metadata</h4>  
+                            <br>Sensor ID</br>
+                            <h:inputText id="inputTextDM" value="#{dataManager.metaDataSensor}" required="true"/>
+                            <br><p:commandButton styleClass="startPageBtn" value="Display Metadata" action="#{dataManager.updateMetaData()}" update="metadataPreview"/></br>
+                        </h:form>
+                        <h:dataTable id="metadataPreview" value="#{dataManager.metaData}" var="o" 
+                                     styleClass="sensor-table" 
+                                     headerClass="sensor-table-header"
+                                     rowClasses="sensor-table-odd-row,sensor-table-even-row"
+                                     >
+                            <h3> Sensor overview</h3>
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                    #{o.key}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Value</f:facet>
+                                    #{o.value}
+                            </h:column>
+                        </h:dataTable>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="sensorOverview">
+                <h1>Testbed Overview</h1>
+                <div class="tabs">
+                    <button class="tabbutton" window.onload="openTab(event, 'testbed1')" onclick="openTab(event, 'testbed1')">Testbed 1</button>
+                    <button class="tabbutton" onclick="openTab(event, 'testbed2')">Testbed 2</button>
+                    <button class="tabbutton" onclick="openTab(event, 'testbed3')">Testbed 3</button>
+                    <button class="tabbutton" onclick="openTab(event, 'testbed4')">Testbed 4</button>
+                </div>
+                <div id="testbed1" class="tabcontent">
+                    <h2> Testbed 1</h2>
+                    <!--<p>Choose a sensor</p>-->
+                    <img src="img/Sensorerv2.PNG" usemap="#sensors1" width="600" height="340"/>
+                    <map name="sensors1">
+                        <area shape="rect" coords="276,82,296,102" class="GX44" 
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '3';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '3';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '3'"
+                        />
+                        <area shape="rect" coords="130,298,150,318" class="GX43"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '2';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '2';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '2'"
+                        />
+                        <area shape="rect" coords="335,163,355,183" class="GX11"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '1';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '1';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '1'"
+                        />
+                    </map>
+                </div>
+                <div id="testbed2" class="tabcontent">
+                    <h2> Testbed 2</h2>
+                    <img src="img/Sensorerv2.PNG" usemap="#sensors2" width="600" height="340"/>
+                    <map name="sensors2">
+                        <area shape="rect" coords="276,82,296,102" class="GX44" 
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '16';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '16';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '16'"
+                        />
+                        <area shape="rect" coords="130,298,150,318" class="GX43"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '13';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '13';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '13'"
+                        />
+                        <area shape="rect" coords="335,163,355,183" class="GX11"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '10';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '10';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '10'"
+                        />
+                    </map>
+                </div>
+                <div id="testbed3" class="tabcontent">
+                    <h2> Testbed 3</h2>
+                    <img src="img/Sensorerv2.PNG" usemap="#sensors3" width="600" height="340"/>
+                    <map name="sensors3">
+                        <area shape="rect" coords="276,82,296,102" class="GX44" 
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '25';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '25';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '25'"
+                        />
+                        <area shape="rect" coords="130,298,150,318" class="GX43"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '22';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '22';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '22'"
+                        />
+                        <area shape="rect" coords="335,163,355,183" class="GX11"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '19';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '19';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '19'"
+                        />
+                    </map>
+                </div>
+                <div id="testbed4" class="tabcontent">
+                    <h2> Testbed 4</h2>
+                    <img src="img/Sensorerv2.PNG" usemap="#sensors4" width="600" height="340"/>
+                    <map name="sensors4">
+                        <area shape="rect" coords="276,82,296,102" class="GX44" 
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '34';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '34';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '34'"
+                        />
+                        <area shape="rect" coords="130,298,150,318" class="GX43"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '31';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '31';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '33'"
+                        />
+                        <area shape="rect" coords="335,163,355,183" class="GX11"
+                              onclick="document.getElementById(document.getElementById('tableDiv').childNodes[1].id + ':inputTextDS').value = '28';
+                                document.getElementById(document.getElementById('metadataTable').childNodes[1].id + ':inputTextDM').value = '28';
+                                document.getElementById(document.getElementById('actualDownloadDiv').childNodes[1].childNodes[4].id).value = '28'"
+                        />                      
+                    </map>
+                </div>
+            </div>           
+        </div>
+    </h:body>
+</html>

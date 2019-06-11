@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <link rel="stylesheet" href="css/Styles.css"/>
+    <!--
+    <ui:define name="head">
+        <link rel="stylesheet" href="css/index.css"/>
+    </ui:define> -->
+
+    <h:body>
+        <h:messages globalOnly="true"/>
+        <div class="registerDiv">
+            <p class="formHeader">Register</p>
+            <h:form id="loginForm">
+                <p class="fieldHeader">First name</p>
+                <p><h:inputText styleClass="textField" id="loginFname" value="#{dataManager.fname}" required="true"/></p>
+                <h:message for="loginFname" style="color:red" />
+                <p class="fieldHeader">Surname</p>
+                <p><h:inputText styleClass="textField" id="loginSurname" value="#{dataManager.surname}" required="true"/></p>
+                <h:message for="loginSurname" style="color:red" />
+                <p class="fieldHeader">Email</p>
+                <p><h:inputText styleClass="textField" id="loginEmail" value="#{dataManager.email}" required="true"/></p>
+                <h:message for="loginEmail" style="color:red" />
+                <p class="fieldHeader">Password</p>
+                <p><h:inputSecret styleClass="textField" id="loginPassword" value="#{dataManager.pwd}" required="true"/></p>
+                <h:message for="loginPassword" style="color:red" />
+                <p><h:commandButton styleClass="formButton" id="submitLoginBtn" value="Register" action="#{dataManager.register()}"/></p>
+                <a href="/degthesis/index.xhtml">Already have an account? Click here to login</a>
+            </h:form>
+        </div>      
+    </h:body>
+
+</html>

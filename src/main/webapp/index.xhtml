@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <link rel="stylesheet" href="css/Styles.css"/>
+    <!--
+    <ui:define name="head">
+        <link rel="stylesheet" href="css/index.css"/>
+    </ui:define> -->
+
+    <h:body>
+        <h:messages globalOnly="true"/>
+        <div class="loginDiv">
+            <p class="formHeader">Login</p>
+            <h:form id="loginForm">
+                <p class="fieldHeader">Email</p>
+                <p><h:inputText styleClass="textField" id="loginEmail" value="#{dataManager.email}" required="true"/></p>
+                <h:message for="loginEmail" style="color:red" />
+                <p class="fieldHeader">Password</p>
+                <p><h:inputSecret styleClass="textField" id="loginPassword" value="#{dataManager.pwd}" required="true"/></p>
+                <h:message for="loginPassword" style="color:red" />
+                <p><h:commandButton styleClass="formButton" id="submitLoginBtn" value="Login" action="#{dataManager.login()}"/></p>
+                <a href="/degthesis/register.xhtml">No account? Click here to register</a>
+            </h:form>
+        </div>
+        <div>
+            <h:form id="testForm2" class="form"> 
+                <h:inputText id="t4" class="test"/>
+                <h:commandButton id="submitBtn" value="button" action="#{dataManager.test()}" onclick=" window.open('localhost:8080/degthesis','_blank')" immediate="true" class="test"/>
+             </h:form>
+        </div>
+    </h:body>
+
+</html>

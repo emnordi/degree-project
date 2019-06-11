@@ -1,0 +1,245 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2019-mar-19, 14:44:38
+    Author     : lucas
+*/
+.textField{
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 4px 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.loginDiv{
+    margin: 10% auto;
+    width: 30%;
+    padding: 10px;
+    border: 1.5px solid #888888;
+    border-radius: 2px;
+    /*text-align: center;*/
+}
+
+.registerDiv{
+    margin: 4% auto;
+    width: 30%;
+    padding: 10px;
+    border: 1.5px solid #888888;
+    border-radius: 2px;
+    /*text-align: center;*/
+}
+
+.formButton{
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    width: 40%;
+    padding: 14px 20px;
+    background-color: #2ccc4f;
+    color: white;
+    border: none;
+}
+.formButton:hover{
+    opacity: 0.9;
+}
+.formHeader{
+    text-align: center;
+    font-family: Verdana, sans-serif;
+    font-size: 30px;
+}
+
+.fieldHeader{
+    font-family: Verdana, sans-serif;
+}
+
+#treeDiv{
+    float: left;
+    width: 20%;
+}
+
+.tabs{
+    overflow: hidden;
+    border: 1px solid #fff;
+    margin: auto;
+}
+
+.tabs button{
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tabs button:hover{
+    background-color: #ddd;
+}
+
+.tabs button.active {
+    background-color: #ccc;
+}
+
+.tabcontent{
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+#tree {
+    margin: 0;
+    padding: 0;
+}
+
+.treeChild {
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.treeChild::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.treeChild-open::before {
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.treeNested {
+    display:none;
+}
+
+.active {
+    display: block;
+}
+
+
+.sensor-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 3%;
+}
+
+.sensor-table-header {
+    text-align: center;
+    background: none repeat scroll 0 0 #E5E5E5;
+    border-bottom: 1px solid #BBBBBB;
+    border-left: 1px solid #BBBBBB;
+    padding: 8px;
+}
+
+.sensor-table-odd-row {
+    text-align: center;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-top: 1px solid #BBBBBB;
+}
+
+.sensor-table-even-row {
+    text-align: center;
+    background: none repeat scroll 0 0 #CCCCCC;
+    border-top: 1px solid #BBBBBB;
+}
+
+#startPageWrapper {
+    width: 100%;
+}
+
+#downloadDiv {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+#sensorOverview{
+    width: 50%;
+    float: left;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+}
+
+#tableDiv {
+    box-sizing: border-box;
+    height: 400px; 
+    overflow: auto;
+    float: left;
+    margin-top: 0;
+    width: 50%;
+    border-right: 0.5px solid #000000;
+}
+
+#twoTables {
+    margin-top: 10%;
+}
+
+#metadataTable {
+    box-sizing: border-box;
+    width: 50%;
+    float: right;
+    margin-right: 0;
+    height: 400px; 
+    overflow: auto;
+    border-left: 0.5px solid #000000;
+}
+
+#actualDownloadDiv {
+    border-bottom: 1px solid #000000;
+    margin-bottom: 40px;
+}
+
+.startPageBtn {
+    cursor: pointer;
+    margin: 10px auto;
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: #47494f;
+    color: white;
+    border: 1px solid;
+    border-radius: 2px;
+}
+
+#startPageWrapper {
+    font-family: sans-serif;
+}
+
+.admin {
+    float: left;
+}
+
+#adminWrapper {
+    font-family: sans-serif;
+}
+
+#adminDiv1 {
+    width: 30%;
+    float: left;
+    border-right: 0.5px solid #000000;
+}
+
+#adminDiv2 {
+    width: 30%;
+    float: left;
+    border-right: 0.5px solid #000000;
+    margin-left: 2%;
+}
+
+#adminDiv3 {
+    width: 30%;
+    float: left;
+    margin-left: 2%;
+}

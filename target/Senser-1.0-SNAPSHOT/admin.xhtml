@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <link rel="stylesheet" href="css/Styles.css"/>
+    <!--
+    <ui:define name="head">
+        <link rel="stylesheet" href="css/index.css"/>
+    </ui:define> -->
+
+    <h:body>
+        <div id="adminWrapper">
+            <div id="admin">
+            <a href="/degthesis/overview.xhtml">Overview</a>
+            </div>
+            <div id="adminDiv1">
+                <h1>Add New Sensor</h1>
+                <h:form>
+                    <br><b>Sensor name</b></br>
+                    <h:inputText value="#{dataManager.newSensorName}" required="true"/>
+                    <br><b>Sensor Testbed</b></br>
+                    <h:selectOneMenu id="sensorValue" value="#{dataManager.newSensorTestbed}" required="true">
+                        <f:selectItems value="#{dataManager.menuTestbedValue}"/>
+                    </h:selectOneMenu>
+                    <br><b>Sensor Unit</b></br>
+                    <h:inputText value="#{dataManager.newSensorUnit}" required="true"/>                
+                    <br><h:commandButton styleClass="startPageBtn" value="Add Sensor" action="#{dataManager.addNewSensor()}"/></br>
+                </h:form>
+            </div>
+            <div id="adminDiv2">
+                <h1>Add New Testbed</h1>
+                <h:form>
+                    <br><b>Testbed Address</b></br>
+                    <h:inputText value="#{dataManager.newTestbedAddress}" required="true"/>
+                    <br><b>Testbed Name</b></br>
+                    <h:inputText value="#{dataManager.newTestbedName}" required="true"/>
+                    <br><h:commandButton styleClass="startPageBtn" value="Add Testbed" action="#{dataManager.addNewTestbed()}"/></br>
+                </h:form>
+            </div>
+            <div id="adminDiv3">
+                <h1>Add New Metadata</h1>
+                <h:form>
+                    <br><b>Sensor</b></br>
+                    <h:selectOneMenu id="sensorValue" value="#{dataManager.newMetadataSensorID}" required="true">
+                        <f:selectItems value="#{dataManager.chosenSensorValue}" var="c" itemLabel="Testbed #{c.testbed} #{c.name}" itemValue="#{c.sid}"/>
+                    </h:selectOneMenu>
+                    <br><b>Name</b></br>
+                    <h:inputText value="#{dataManager.newMetadataName}" required="true"/>
+                    <br><b>Value</b></br>
+                    <h:inputText value="#{dataManager.newMetadataValue}" required="true"/>                
+                    <br><h:commandButton styleClass="startPageBtn" value="Add Metadata" action="#{dataManager.addNewMetadata()}"/></br>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+
+</html>
